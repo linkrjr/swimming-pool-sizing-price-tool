@@ -12,7 +12,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
