@@ -32,7 +32,7 @@ test('prices a pool using the base cost set in admin', async ({ page }) => {
 
   await quote(page, '10', '5', '2')
 
-  await expect(page.getByText('£3,000.00')).toBeVisible()
+  await expect(page.getByText('$3,000.00')).toBeVisible()
   await expect(page.getByText('Based on a volume of 100 m3')).toBeVisible()
 })
 
@@ -65,12 +65,12 @@ test('recalculates against an updated base cost', async ({ page }) => {
   await setBaseCost(page, '10')
   await page.goto('/')
   await quote(page, '2', '2', '2')
-  await expect(page.getByText('£80.00')).toBeVisible()
+  await expect(page.getByText('$80.00')).toBeVisible()
 
   await setBaseCost(page, '20')
   await page.goto('/')
   await quote(page, '2', '2', '2')
-  await expect(page.getByText('£160.00')).toBeVisible()
+  await expect(page.getByText('$160.00')).toBeVisible()
 })
 
 test('the admin link is reachable from the calculator', async ({ page }) => {

@@ -1,7 +1,7 @@
 export const DEFAULT_BASE_COST = 25
 
-const CURRENCY = 'GBP'
-const LOCALE = 'en-GB'
+const CURRENCY = 'USD'
+const LOCALE = 'en-US'
 
 /** Parses a user-entered dimension or rate. Returns null unless it is a positive finite number. */
 export function parsePositiveNumber(value: string): number | null {

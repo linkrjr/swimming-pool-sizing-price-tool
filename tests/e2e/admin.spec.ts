@@ -15,7 +15,7 @@ test('saves a new base cost and confirms it', async ({ page }) => {
   await page.getByRole('button', { name: 'Save' }).click()
 
   await expect(page.getByRole('status')).toHaveText(
-    'Base cost saved as £30.00 per cubic metre.',
+    'Base cost saved as $30.00 per cubic metre.',
   )
 })
 

@@ -35,7 +35,7 @@ describe('Admin', () => {
 
     expect(getBaseCost()).toBe(45)
     expect(screen.getByRole('status')).toHaveTextContent(
-      'Base cost saved as £45.00 per cubic metre.',
+      'Base cost saved as $45.00 per cubic metre.',
     )
   })
 

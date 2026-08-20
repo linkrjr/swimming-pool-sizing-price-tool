@@ -44,11 +44,11 @@ describe('calculatePrice', () => {
 
 describe('formatCurrency', () => {
   it('formats as GBP with thousands separators', () => {
-    expect(formatCurrency(3000)).toBe('£3,000.00')
+    expect(formatCurrency(3000)).toBe('$3,000.00')
   })
 
   it('rounds to two decimal places', () => {
-    expect(formatCurrency(1234.567)).toBe('£1,234.57')
+    expect(formatCurrency(1234.567)).toBe('$1,234.57')
   })
 })
 

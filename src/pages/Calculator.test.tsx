@@ -33,7 +33,7 @@ describe('Calculator', () => {
 
     await fillAndCalculate('10', '5', '2')
 
-    expect(screen.getByText('£3,000.00')).toBeInTheDocument()
+    expect(screen.getByText('$3,000.00')).toBeInTheDocument()
     expect(screen.getByText('Based on a volume of 100 m3')).toBeInTheDocument()
   })
 
@@ -42,11 +42,11 @@ describe('Calculator', () => {
     render(<Calculator />)
 
     await fillAndCalculate('2', '2', '2')
-    expect(screen.getByText('£80.00')).toBeInTheDocument()
+    expect(screen.getByText('$80.00')).toBeInTheDocument()
 
     setBaseCost(20)
     await userEvent.click(screen.getByRole('button', { name: 'Calculate' }))
-    expect(screen.getByText('£160.00')).toBeInTheDocument()
+    expect(screen.getByText('$160.00')).toBeInTheDocument()
   })
 
   it('shows an error for each empty field and no result', async () => {
@@ -85,12 +85,12 @@ describe('Calculator', () => {
     render(<Calculator />)
 
     await fillAndCalculate('2', '2', '2')
-    expect(screen.getByText('£200.00')).toBeInTheDocument()
+    expect(screen.getByText('$200.00')).toBeInTheDocument()
 
     await userEvent.clear(screen.getByLabelText('Depth'))
     await userEvent.click(screen.getByRole('button', { name: 'Calculate' }))
 
-    expect(screen.queryByText('£200.00')).not.toBeInTheDocument()
+    expect(screen.queryByText('$200.00')).not.toBeInTheDocument()
     expect(
       screen.getByText('Depth must be a number greater than zero'),
     ).toBeInTheDocument()
@@ -101,6 +101,6 @@ describe('Calculator', () => {
 
     await fillAndCalculate('2', '2', '1')
 
-    expect(screen.getByText('£100.00')).toBeInTheDocument()
+    expect(screen.getByText('$100.00')).toBeInTheDocument()
   })
 })
