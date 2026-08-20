@@ -62,7 +62,7 @@ export default function Calculator() {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
       <h1 className="text-3xl font-semibold tracking-tight text-navy">
-        Pool maintenance quote
+        Pool resurfacing quote
       </h1>
       <p className="mt-2 text-muted">
         Enter the pool dimensions in metres to size the job.
