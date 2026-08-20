@@ -14,7 +14,7 @@ export default function NavBar() {
         <NavLink to="/" end>
           {/* The wordmark is white in the source PNG, so this header stays navy. */}
           <img
-            src="/logo.png"
+            src={`${import.meta.env.BASE_URL}logo.png`}
             alt="Gold Star Pool Renovations"
             width={1255}
             height={285}
