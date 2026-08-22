@@ -1,5 +1,8 @@
 export const DEFAULT_BASE_COST = 25
 
+/** GST added on top of the pre-tax estimate. */
+export const GST_RATE = 0.1
+
 const CURRENCY = 'USD'
 const LOCALE = 'en-US'
 
@@ -20,13 +23,14 @@ export function calculateVolume(
   return length * width * depth
 }
 
+/** Prices the job including GST. */
 export function calculatePrice(
   length: number,
   width: number,
   depth: number,
   baseCost: number,
 ): number {
-  return calculateVolume(length, width, depth) * baseCost
+  return calculateVolume(length, width, depth) * baseCost * (1 + GST_RATE)
 }
 
 export function formatCurrency(amount: number): string {

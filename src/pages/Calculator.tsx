@@ -94,7 +94,7 @@ export default function Calculator() {
         {quote ? (
           <div className="rounded-xl border-l-4 border-accent bg-slate-50 px-6 py-5">
             <p className="text-xs font-semibold tracking-widest text-muted uppercase">
-              Estimated cost
+              Estimated cost + GST
             </p>
             <p
               aria-live="polite"

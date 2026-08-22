@@ -33,12 +33,12 @@ describe('calculateVolume', () => {
 })
 
 describe('calculatePrice', () => {
-  it('prices volume at the base cost per cubic metre', () => {
-    expect(calculatePrice(10, 5, 2, 30)).toBe(3000)
+  it('prices volume at the base cost per cubic metre plus GST', () => {
+    expect(calculatePrice(10, 5, 2, 30)).toBeCloseTo(3300)
   })
 
   it('scales with the base cost', () => {
-    expect(calculatePrice(4, 3, 2, 12.5)).toBe(300)
+    expect(calculatePrice(4, 3, 2, 12.5)).toBeCloseTo(330)
   })
 })
 
