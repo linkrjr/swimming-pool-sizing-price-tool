@@ -23,6 +23,21 @@ export function calculateVolume(
   return length * width * depth
 }
 
+/** Prices the job before GST is applied. */
+export function calculateBasePrice(
+  length: number,
+  width: number,
+  depth: number,
+  baseCost: number,
+): number {
+  return calculateVolume(length, width, depth) * baseCost
+}
+
+/** GST amount owed on top of the pre-tax price. */
+export function calculateGst(basePrice: number): number {
+  return basePrice * GST_RATE
+}
+
 /** Prices the job including GST. */
 export function calculatePrice(
   length: number,
@@ -30,7 +45,8 @@ export function calculatePrice(
   depth: number,
   baseCost: number,
 ): number {
-  return calculateVolume(length, width, depth) * baseCost * (1 + GST_RATE)
+  const basePrice = calculateBasePrice(length, width, depth, baseCost)
+  return basePrice + calculateGst(basePrice)
 }
 
 export function formatCurrency(amount: number): string {

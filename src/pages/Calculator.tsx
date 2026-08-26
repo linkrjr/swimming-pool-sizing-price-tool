@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import NumberField from '../components/NumberField'
 import {
-  calculatePrice,
+  calculateBasePrice,
+  calculateGst,
   calculateVolume,
   formatCurrency,
   formatVolume,
@@ -19,7 +20,7 @@ const FIELDS: { key: Dimension; label: string }[] = [
 
 const EMPTY = { length: '', width: '', depth: '' }
 
-type Quote = { price: number; volume: number }
+type Quote = { basePrice: number; gst: number; total: number; volume: number }
 
 export default function Calculator() {
   const [values, setValues] = useState<Record<Dimension, string>>(EMPTY)
@@ -53,8 +54,17 @@ export default function Calculator() {
     }
 
     const baseCost = getBaseCost()
+    const basePrice = calculateBasePrice(
+      parsed.length,
+      parsed.width,
+      parsed.depth,
+      baseCost,
+    )
+    const gst = calculateGst(basePrice)
     setQuote({
-      price: calculatePrice(parsed.length, parsed.width, parsed.depth, baseCost),
+      basePrice,
+      gst,
+      total: basePrice + gst,
       volume: calculateVolume(parsed.length, parsed.width, parsed.depth),
     })
   }
@@ -94,13 +104,26 @@ export default function Calculator() {
         {quote ? (
           <div className="rounded-xl border-l-4 border-accent bg-slate-50 px-6 py-5">
             <p className="text-xs font-semibold tracking-widest text-muted uppercase">
-              Estimated cost + GST
+              Estimated cost
+            </p>
+            <dl className="mt-2 space-y-1 text-sm text-muted">
+              <div className="flex justify-between">
+                <dt>Total cost</dt>
+                <dd>{formatCurrency(quote.basePrice)}</dd>
+              </div>
+              <div className="flex justify-between">
+                <dt>GST</dt>
+                <dd>{formatCurrency(quote.gst)}</dd>
+              </div>
+            </dl>
+            <p className="mt-3 text-xs font-semibold tracking-widest text-muted uppercase">
+              Final price including GST
             </p>
             <p
               aria-live="polite"
               className="mt-1 text-4xl font-semibold tracking-tight text-navy"
             >
-              {formatCurrency(quote.price)}
+              {formatCurrency(quote.total)}
             </p>
             <p className="mt-2 text-sm text-muted">
               Based on a volume of {formatVolume(quote.volume)} m3
